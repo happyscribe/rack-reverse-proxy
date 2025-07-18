@@ -173,7 +173,7 @@ module RackReverseProxy
 
       def find_matches
         Array(
-          spec.send(spec_match_method_name, *spec_params) && apply_constraints!
+          apply_constraints! && spec.send(spec_match_method_name, *spec_params)
         )
       end
 
@@ -207,7 +207,7 @@ module RackReverseProxy
         if constraint.blank?
           return true
         end
-        
+
         constraint.call(rackreq)
       end
     end
